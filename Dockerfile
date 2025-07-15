@@ -1,5 +1,5 @@
 # Use the official Botpress image from Docker Hub
-FROM botpress/server:v12
+FROM ghcr.io/botpress/server:v12.30.6
 
 # Set the working directory
 WORKDIR /botpress
