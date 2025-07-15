@@ -1,14 +1,20 @@
-# Use the official Botpress image from Docker Hub
-FROM ghcr.io/botpress/server:v12.30.6
+# Use a base Node image
+FROM node:18
 
-# Set the working directory
-WORKDIR /botpress
+# Create app directory
+WORKDIR /app
 
-# Copy your local bot files into the container
+# Install Botpress CLI globally
+RUN npm install -g @botpress/cli
+
+# Copy your bot project into the image
 COPY . .
 
-# Expose the port Botpress runs on
+# Install dependencies (for any custom actions)
+RUN npm install || true
+
+# Expose Botpress port
 EXPOSE 3000
 
-# Run the Botpress server
-CMD ["./bp"]
+# Start Botpress server
+CMD ["bp", "dev"]
